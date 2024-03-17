@@ -10,7 +10,7 @@ type musicData struct {
 	Rank   int    `json:"rank"`
 }
 
-func main() {
+func scrapeMusicData() []musicData {
 	c := colly.NewCollector(
 		colly.AllowedDomains("www.billboard.com"),
 	)
@@ -33,10 +33,7 @@ func main() {
 	})
 
 	// Start scraping
-	c.Visit("https://www.billboard.com/charts/hot-100/1991-07-13/")
+	c.Visit("https://www.billboard.com/charts/hot-100/1991-05-13/")
 
-	// Print data
-	for _, m := range music {
-		println(m.Rank, m.Title, m.Artist)
-	}
+	return music
 }
